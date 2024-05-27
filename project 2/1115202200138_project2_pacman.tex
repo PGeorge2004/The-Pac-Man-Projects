@@ -1,0 +1,44 @@
+\documentclass{article}
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{AI Project 2 problem 5 (PAC-MAN)}
+\author{Papanikolaou George}
+
+\begin{document}
+\graphicspath{ {./images/} }
+\maketitle
+
+\section{Q1 - Evaluation function}
+To evaluate the value of the state we first check if the state is a winning one(goal state) or a losing state(pacman gets eaten). Then we find the closest food using the Manhattan distance function and add that distance to the total min. Then we find the closest ghost in the exact same way but we ignore the scared ones. Then we divide 1 by that distance in order to change its order(from increasing when the distance increase to decreasing when the value increase) and then we add that number to the total min. Then we divide 1 by the total min for the same reason we add the score at that state and that is our value for that state(which we return).
+\section{Q2 - Minimax}
+We use a classic recursive minimax function to calculate the best action for Pacman. I use a tuple to make the function return the action with the value.  I took reference from this video :
+\begin{center}
+    \url{https://www.youtube.com/watch?v=l-hh51ncgDI}
+\end{center}
+
+\section{Q3 - MinimaxAlphaBeta}
+We use two new variables to keep the until now max(Alpha) and min(Beta) so that we can prune if the expected values are less than or greater than the max and min accordingly. I took reference from the same video :
+\begin{center}
+    \url{https://www.youtube.com/watch?v=l-hh51ncgDI}
+\end{center}
+
+\section{Q4 - Expectimax}
+
+The only difference from the minimax algorithm is that instead of a minimizer we take the average of the children of the chance node as they have the same chance to be selected and that average is the value of that node. 
+
+\section{Q5 - Better Evaluation Function}
+
+I took the function from q1 and added two more parameters, the ghost that Pacman can eat(they are close enough to Pacman to eat and chase them) and the Manhattan distance from the closest capsule. The distance is added to the total min and the ghosts that can be chased are added to the return value.
+\end{document}
